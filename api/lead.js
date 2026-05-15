@@ -23,9 +23,10 @@ export default async function handler(req) {
     });
   }
 
-  const resendKey = process.env.RESEND_API_KEY;
-  const leadTo = process.env.LEAD_TO_EMAIL;
-  const leadFrom = process.env.LEAD_FROM_EMAIL || 'onboarding@resend.dev';
+  // Trimma bort eventuell whitespace/newline (vanlig copy-paste-gotcha)
+  const resendKey = (process.env.RESEND_API_KEY || '').trim();
+  const leadTo = (process.env.LEAD_TO_EMAIL || '').trim();
+  const leadFrom = (process.env.LEAD_FROM_EMAIL || 'onboarding@resend.dev').trim();
 
   if (!resendKey || !leadTo) {
     return new Response(JSON.stringify({
@@ -108,24 +109,35 @@ export default async function handler(req) {
       </p>
     </body></html>`;
 
-  const resendRes = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${resendKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from: leadFrom,
-      to: [leadTo],
-      reply_to: safe.email,
-      subject,
-      text: textBody,
-      html: htmlBody,
-    }),
-  });
+  let resendRes;
+  try {
+    resendRes = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${resendKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: leadFrom,
+        to: [leadTo],
+        reply_to: safe.email,
+        subject,
+        text: textBody,
+        html: htmlBody,
+      }),
+    });
+  } catch (err) {
+    console.error('Resend fetch threw:', err);
+    return new Response(JSON.stringify({
+      error: 'Could not call Resend',
+      detail: String(err && err.message ? err.message : err),
+    }), { status: 502, headers: { 'Content-Type': 'application/json' } });
+  }
 
   if (!resendRes.ok) {
-    const errText = await resendRes.text();
+    let errText = '';
+    try { errText = await resendRes.text(); } catch {}
+    console.error(`Resend ${resendRes.status}:`, errText);
     return new Response(JSON.stringify({
       error: `Resend API ${resendRes.status}`,
       detail: errText,
