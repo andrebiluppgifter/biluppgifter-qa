@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Biluppgifter API Assistant</title>
+<title>Biluppgifter — Hitta rätt data för ditt behov</title>
 <style>
   :root {
     --bg: #f4f6f8;
@@ -17,6 +17,7 @@
     --accent-2: #e86a0d;
     --accent-soft: #fff4e8;
     --user-bg: #fff4e8;
+    --user-border: #f5dcc1;
     --bot-bg: #ffffff;
     --code-bg: #f5f7fa;
     --code-text: #d97706;
@@ -31,7 +32,7 @@
   html, body { height: 100%; }
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, sans-serif;
     background: var(--bg);
     color: var(--text);
     display: flex;
@@ -79,55 +80,18 @@
     display: block;
     margin-top: 2px;
   }
-  header .actions { display: flex; gap: 8px; align-items: center; }
-  .btn {
-    background: var(--panel);
-    color: var(--text);
-    border: 1px solid var(--border);
-    padding: 8px 14px;
-    border-radius: 10px;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.15s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: inherit;
-  }
-  .btn:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
-  .btn.primary {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: white;
-    font-weight: 600;
-  }
-  .btn.primary:hover { background: var(--accent-2); border-color: var(--accent-2); color: white; }
-  .btn.ghost { background: transparent; border-color: transparent; color: var(--muted); }
-  .btn.ghost:hover { background: var(--border-light); border-color: var(--border-light); color: var(--text); }
-  .status-pill {
-    font-size: 11px;
-    padding: 4px 10px;
-    border-radius: 999px;
-    background: rgba(22, 163, 74, 0.1);
-    color: var(--ok);
-    border: 1px solid rgba(22, 163, 74, 0.25);
-    font-weight: 500;
-  }
-  .status-pill.warn {
-    background: rgba(220, 38, 38, 0.08);
-    color: var(--danger);
-    border-color: rgba(220, 38, 38, 0.25);
-  }
+  header .actions { display: flex; gap: 12px; align-items: center; font-size: 13px; color: var(--muted); }
+  header .actions a { color: var(--muted); text-decoration: none; font-weight: 500; }
+  header .actions a:hover { color: var(--accent); }
 
   main {
     flex: 1;
     overflow-y: auto;
-    padding: 28px 20px 130px;
+    padding: 28px 20px 140px;
     scroll-behavior: smooth;
   }
   .chat {
-    max-width: 760px;
+    max-width: 720px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -156,7 +120,6 @@
   .msg.user .avatar {
     background: var(--user-bg);
     color: var(--accent);
-    font-style: normal;
   }
   .msg.bot .avatar {
     background: var(--accent);
@@ -178,18 +141,12 @@
   }
   .msg.user .bubble {
     background: var(--user-bg);
-    border-color: #f5dcc1;
+    border-color: var(--user-border);
     color: var(--text);
   }
   .bubble p { margin: 0 0 10px; }
   .bubble p:last-child { margin-bottom: 0; }
-  .bubble h1, .bubble h2, .bubble h3, .bubble h4 {
-    margin: 14px 0 8px;
-    line-height: 1.3;
-  }
-  .bubble h1 { font-size: 18px; }
-  .bubble h2 { font-size: 16px; }
-  .bubble h3 { font-size: 15px; }
+  .bubble h3, .bubble h4 { margin: 14px 0 8px; line-height: 1.3; font-size: 15px; }
   .bubble ul, .bubble ol { padding-left: 22px; margin: 6px 0 10px; }
   .bubble li { margin-bottom: 4px; }
   .bubble code {
@@ -201,42 +158,9 @@
     color: var(--code-text);
     border: 1px solid var(--border-light);
   }
-  .bubble pre {
-    background: var(--code-bg);
-    border: 1px solid var(--border);
-    padding: 12px 14px;
-    border-radius: 10px;
-    overflow-x: auto;
-    margin: 10px 0;
-  }
-  .bubble pre code {
-    background: none;
-    padding: 0;
-    color: #374151;
-    font-size: 12.5px;
-    border: none;
-  }
-  .bubble table {
-    border-collapse: collapse;
-    margin: 10px 0;
-    font-size: 13.5px;
-    width: 100%;
-  }
-  .bubble th, .bubble td {
-    border: 1px solid var(--border);
-    padding: 8px 10px;
-    text-align: left;
-  }
-  .bubble th { background: var(--panel-2); font-weight: 600; }
-  .bubble a { color: var(--accent); text-decoration: none; font-weight: 500; }
-  .bubble a:hover { text-decoration: underline; }
-  .bubble blockquote {
-    border-left: 3px solid var(--accent);
-    padding-left: 12px;
-    margin: 10px 0;
-    color: var(--muted);
-  }
   .bubble strong { font-weight: 600; color: var(--text); }
+  .bubble a { color: var(--accent); font-weight: 500; text-decoration: none; }
+  .bubble a:hover { text-decoration: underline; }
 
   .typing {
     display: inline-flex;
@@ -258,59 +182,25 @@
     30% { opacity: 1; transform: scale(1); }
   }
 
-  .welcome {
-    max-width: 760px;
-    margin: 32px auto 20px;
-    text-align: center;
+  .lead-card {
+    background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+    color: white;
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin: 12px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 14px;
+    line-height: 1.5;
+    box-shadow: 0 4px 14px rgba(22, 163, 74, 0.25);
   }
-  .welcome h1 {
-    font-size: 30px;
-    margin: 0 0 12px;
-    color: var(--accent);
-    font-weight: 700;
-    letter-spacing: -0.5px;
+  .lead-card.error {
+    background: linear-gradient(135deg, #dc2626 0%, #f87171 100%);
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.25);
   }
-  .welcome p {
-    color: var(--muted);
-    margin: 0 0 28px;
-    font-size: 15px;
-    line-height: 1.6;
-    max-width: 580px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .examples {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 10px;
-    margin-top: 20px;
-  }
-  .example {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    padding: 14px 16px;
-    border-radius: 12px;
-    cursor: pointer;
-    text-align: left;
-    font-size: 13.5px;
-    color: var(--muted);
-    transition: all 0.15s ease;
-    font-family: inherit;
-    box-shadow: var(--shadow);
-  }
-  .example:hover {
-    border-color: var(--accent);
-    color: var(--text);
-    background: var(--accent-soft);
-    transform: translateY(-1px);
-  }
-  .example strong {
-    display: block;
-    color: var(--text);
-    margin-bottom: 4px;
-    font-size: 13.5px;
-    font-weight: 600;
-  }
+  .lead-card svg { flex-shrink: 0; }
+  .lead-card strong { display: block; margin-bottom: 4px; font-weight: 600; }
 
   footer {
     position: fixed;
@@ -322,7 +212,7 @@
     pointer-events: none;
   }
   .composer {
-    max-width: 760px;
+    max-width: 720px;
     margin: 0 auto;
     background: var(--panel);
     border: 1px solid var(--border);
@@ -368,90 +258,21 @@
   .send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
   .send-btn svg { width: 18px; height: 18px; }
 
-  /* Settings dialog */
-  dialog {
-    background: var(--panel);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 0;
-    max-width: 480px;
-    width: calc(100% - 40px);
-    box-shadow: var(--shadow-lg);
-  }
-  dialog::backdrop { background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(4px); }
-  .dialog-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 22px;
-    border-bottom: 1px solid var(--border);
-  }
-  .dialog-header h2 { margin: 0; font-size: 17px; font-weight: 600; }
-  .dialog-body { padding: 22px; }
-  .field { margin-bottom: 16px; }
-  .field label {
-    display: block;
-    font-size: 13px;
-    color: var(--text);
-    margin-bottom: 8px;
-    font-weight: 600;
-  }
-  .field input, .field select {
-    width: 100%;
-    background: var(--panel-2);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 10px 12px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-family: inherit;
-  }
-  .field input:focus, .field select:focus { outline: none; border-color: var(--accent); background: var(--panel); }
-  .field .hint { font-size: 12.5px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
-  .field .hint a { color: var(--accent); }
-  .dialog-footer {
-    padding: 14px 22px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-  }
-
-  .icon-btn {
-    background: transparent;
-    border: none;
-    color: var(--muted);
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.15s ease;
-  }
-  .icon-btn:hover { color: var(--accent); background: var(--accent-soft); }
-
-  /* Footer note */
-  .footer-attribution {
+  .footer-note {
     text-align: center;
-    font-size: 12px;
+    font-size: 11.5px;
     color: var(--muted);
     margin-top: 10px;
     pointer-events: auto;
   }
-  .footer-attribution a { color: var(--accent); text-decoration: none; }
-  .footer-attribution a:hover { text-decoration: underline; }
+  .footer-note a { color: var(--accent); text-decoration: none; }
+  .footer-note a:hover { text-decoration: underline; }
 
-  /* Mobile */
   @media (max-width: 640px) {
     header { padding: 12px 14px; }
-    .brand small { display: none; }
-    main { padding: 18px 12px 120px; }
-    .welcome { margin: 16px auto; }
-    .welcome h1 { font-size: 24px; }
-    .examples { grid-template-columns: 1fr; }
+    main { padding: 16px 12px 120px; }
     footer { padding: 12px 12px 14px; }
+    .brand small { display: none; }
   }
 </style>
 </head>
@@ -460,100 +281,43 @@
   <div class="brand">
     <div class="logo">b</div>
     <div>
-      Biluppgifter API Assistant
-      <small style="display:block">Frågor om vårt API · Xevato · Use cases</small>
+      Biluppgifter
+      <small>Hitta rätt data för ert behov</small>
     </div>
   </div>
   <div class="actions">
-    <span id="apiStatus" class="status-pill">Klar</span>
-    <button class="icon-btn" id="resetBtn" title="Ny konversation">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
-    </button>
-    <button class="btn" id="settingsBtn">Inställningar</button>
+    <a href="https://www.biluppgifter.se" target="_blank">biluppgifter.se</a>
   </div>
 </header>
 
 <main id="main">
-  <div id="welcome" class="welcome">
-    <h1>Vad vill du veta om Biluppgifters API?</h1>
-    <p>Ställ frågor på svenska eller engelska. Jag svarar med endpoints, fältnamn, exempel-anrop och affärscase — anpassat efter om du är utvecklare, säljare eller beslutsfattare.</p>
-    <div class="examples">
-      <button class="example" data-q="Vilka endpoints finns för Sverige?"><strong>📋 Översikt</strong>Vilka endpoints finns för Sverige?</button>
-      <button class="example" data-q="Hur slår jag upp en bil med regnummer ABC123 — visa exempel-anrop i curl och Python."><strong>🚗 Regnr-uppslag</strong>Hur slår jag upp en bil med regnummer? Exempel i curl + Python.</button>
-      <button class="example" data-q="Vi är ett försäkringsbolag som vill bedöma risk vid en ny offert. Vilka datapunkter rekommenderar du och från vilka endpoints?"><strong>🏢 För försäkring</strong>Vilka datapunkter behöver vi för riskbedömning?</button>
-      <button class="example" data-q="Hur kombinerar jag Biluppgifters fordon-API med Xevatos wheels-API för att hitta rätt däck/fälg till en bil?"><strong>🛞 Wheels via Xevato</strong>Kombinera fordon-API + wheels-API</button>
-      <button class="example" data-q="Vad innehåller history-endpointen och vilka HistoryTypes finns?"><strong>📜 Historik</strong>Vad innehåller /vehicle/history och vilka typer finns?</button>
-      <button class="example" data-q="What's the rate limit policy and how do I handle 429 responses?"><strong>⚙️ Rate limits</strong>How do I handle 429 responses?</button>
-    </div>
-  </div>
   <div id="chat" class="chat"></div>
 </main>
 
 <footer>
   <form class="composer" id="composer">
-    <textarea id="input" rows="1" placeholder="Ställ en fråga om Biluppgifters API…"></textarea>
+    <textarea id="input" rows="1" placeholder="Skriv ditt svar…" autofocus></textarea>
     <button type="submit" class="send-btn" id="sendBtn" disabled>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
     </button>
   </form>
-  <div class="footer-attribution">
-    Svar baseras på <a href="http://data.biluppgifter.se/openapi/v1.json" target="_blank">data.biluppgifter.se/openapi/v1.json</a> · Drivs av Claude (Anthropic)
+  <div class="footer-note">
+    Vi behandlar dina uppgifter enligt vår <a href="https://www.biluppgifter.se" target="_blank">integritetspolicy</a>. Kontakt: info@biluppgifter.se
   </div>
 </footer>
 
-<dialog id="settingsDialog">
-  <div class="dialog-header">
-    <h2>Inställningar</h2>
-    <button class="icon-btn" id="closeSettingsBtn">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </div>
-  <div class="dialog-body">
-    <div class="field">
-      <label for="model">Modell</label>
-      <select id="model">
-        <option value="claude-sonnet-4-5">Claude Sonnet 4.5 (rekommenderas)</option>
-        <option value="claude-opus-4-5">Claude Opus 4.5 (bäst kvalitet)</option>
-        <option value="claude-haiku-4-5">Claude Haiku 4.5 (snabbast)</option>
-      </select>
-      <div class="hint">API-nyckeln hanteras server-side på Vercel. Inget behöver konfigureras i webbläsaren.</div>
-    </div>
-  </div>
-  <div class="dialog-footer">
-    <button class="btn ghost" id="cancelSettingsBtn">Avbryt</button>
-    <button class="btn primary" id="saveSettingsBtn">Spara</button>
-  </div>
-</dialog>
-
 <script>
-/* Kunskapsbasen (system prompt + API-spec) ligger i /api/chat.js på servern. */
-
-/* ========= TILLSTÅND ========= */
-
 const state = {
-  model: localStorage.getItem('bil_model') || 'claude-sonnet-4-5',
   messages: [],
+  leadSent: false,
 };
-
-/* ========= DOM-REFERENSER ========= */
 
 const $ = (id) => document.getElementById(id);
 const chatEl = $('chat');
-const welcomeEl = $('welcome');
 const inputEl = $('input');
 const composerEl = $('composer');
 const sendBtn = $('sendBtn');
-const settingsBtn = $('settingsBtn');
-const settingsDialog = $('settingsDialog');
-const modelEl = $('model');
-const saveSettingsBtn = $('saveSettingsBtn');
-const cancelSettingsBtn = $('cancelSettingsBtn');
-const closeSettingsBtn = $('closeSettingsBtn');
-const apiStatus = $('apiStatus');
-const resetBtn = $('resetBtn');
 const mainEl = $('main');
-
-/* ========= INITIERING ========= */
 
 function autoresize(el) {
   el.style.height = 'auto';
@@ -572,34 +336,6 @@ inputEl.addEventListener('keydown', (e) => {
   }
 });
 
-document.querySelectorAll('.example').forEach(btn => {
-  btn.addEventListener('click', () => {
-    inputEl.value = btn.dataset.q;
-    autoresize(inputEl);
-    sendBtn.disabled = false;
-    inputEl.focus();
-  });
-});
-
-settingsBtn.addEventListener('click', () => {
-  modelEl.value = state.model;
-  settingsDialog.showModal();
-});
-closeSettingsBtn.addEventListener('click', () => settingsDialog.close());
-cancelSettingsBtn.addEventListener('click', () => settingsDialog.close());
-saveSettingsBtn.addEventListener('click', () => {
-  state.model = modelEl.value;
-  localStorage.setItem('bil_model', state.model);
-  settingsDialog.close();
-});
-
-resetBtn.addEventListener('click', () => {
-  if (!confirm('Rensa hela konversationen?')) return;
-  state.messages = [];
-  chatEl.innerHTML = '';
-  welcomeEl.style.display = '';
-});
-
 composerEl.addEventListener('submit', async (e) => {
   e.preventDefault();
   const text = inputEl.value.trim();
@@ -607,72 +343,30 @@ composerEl.addEventListener('submit', async (e) => {
   inputEl.value = '';
   autoresize(inputEl);
   sendBtn.disabled = true;
-  welcomeEl.style.display = 'none';
   await sendMessage(text);
+  inputEl.focus();
 });
 
-/* ========= CHAT ========= */
-
+/* === Markdown (simple, safe) === */
 function renderMarkdown(text) {
-  // Minimal markdown-renderare (säker)
-  // Escape HTML först
   let html = text
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
-
-  // Code blocks ```lang\n...```
   html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (m, lang, code) =>
-    '<pre><code class="lang-' + lang + '">' + code + '</code></pre>'
+    '<pre><code>' + code + '</code></pre>'
   );
-  // Inline code
   html = html.replace(/`([^`\n]+)`/g, '<code>$1</code>');
-  // Headers
-  html = html.replace(/^#### (.*)$/gm, '<h4>$1</h4>');
-  html = html.replace(/^### (.*)$/gm, '<h3>$1</h3>');
-  html = html.replace(/^## (.*)$/gm, '<h2>$1</h2>');
-  html = html.replace(/^# (.*)$/gm, '<h1>$1</h1>');
-  // Bold/italic
   html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-  html = html.replace(/(?<![*])\*([^*\n]+)\*(?![*])/g, '<em>$1</em>');
-  // Links [txt](url)
   html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-  // Tables — enkel rendering
-  html = html.replace(/((?:^\|.*\|\s*\n)+)/gm, (block) => {
-    const lines = block.trim().split('\n');
-    if (lines.length < 2) return block;
-    const headerCells = lines[0].split('|').slice(1, -1).map(s => s.trim());
-    const isSep = /^\|[\s\-:|]+\|$/.test(lines[1]);
-    if (!isSep) return block;
-    const rows = lines.slice(2).map(l => l.split('|').slice(1, -1).map(s => s.trim()));
-    let out = '<table><thead><tr>';
-    headerCells.forEach(h => out += '<th>' + h + '</th>');
-    out += '</tr></thead><tbody>';
-    rows.forEach(r => {
-      out += '<tr>';
-      r.forEach(c => out += '<td>' + c + '</td>');
-      out += '</tr>';
-    });
-    out += '</tbody></table>';
-    return out;
-  });
-  // Lists
   html = html.replace(/((?:^[-*] .+(?:\n|$))+)/gm, (block) => {
     const items = block.trim().split('\n').map(l => l.replace(/^[-*] /, ''));
     return '<ul>' + items.map(i => '<li>' + i + '</li>').join('') + '</ul>';
   });
-  html = html.replace(/((?:^\d+\. .+(?:\n|$))+)/gm, (block) => {
-    const items = block.trim().split('\n').map(l => l.replace(/^\d+\. /, ''));
-    return '<ol>' + items.map(i => '<li>' + i + '</li>').join('') + '</ol>';
-  });
-  // Blockquotes
-  html = html.replace(/^&gt; (.*)$/gm, '<blockquote>$1</blockquote>');
-  // Paragraphs (för text som inte redan är inslagen i blocktagg)
   html = html.split(/\n\n+/).map(part => {
-    if (/^\s*<(h\d|ul|ol|pre|table|blockquote)/i.test(part.trim())) return part;
+    if (/^\s*<(h\d|ul|ol|pre|table)/i.test(part.trim())) return part;
     return '<p>' + part.replace(/\n/g, '<br>') + '</p>';
   }).join('\n');
-
   return html;
 }
 
@@ -697,8 +391,60 @@ function addLoadingMessage() {
   return el;
 }
 
-async function sendMessage(text) {
-  addMessage('user', text);
+function addLeadCard(success, email) {
+  const el = document.createElement('div');
+  el.className = 'lead-card' + (success ? '' : ' error');
+  if (success) {
+    el.innerHTML =
+      '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' +
+      '<div><strong>Skickat!</strong>Vi har fått dina uppgifter. Du får ditt test-token på <strong>' + (email || 'din email') + '</strong> inom 24h.</div>';
+  } else {
+    el.innerHTML =
+      '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' +
+      '<div><strong>Något gick fel</strong>Vi kunde inte skicka dina uppgifter automatiskt. Maila istället <strong>info@biluppgifter.se</strong> med din kontakt så hör vi av oss.</div>';
+  }
+  chatEl.appendChild(el);
+  mainEl.scrollTop = mainEl.scrollHeight;
+}
+
+/* === Lead-marker parsing === */
+const LEAD_START = '[LEAD_READY]';
+const LEAD_END = '[/LEAD_READY]';
+
+function extractLead(text) {
+  const start = text.indexOf(LEAD_START);
+  if (start === -1) return { display: text, lead: null };
+  const end = text.indexOf(LEAD_END, start);
+  if (end === -1) {
+    // Markören är påbörjad men ej avslutad — dölj från start så användaren inte ser den
+    return { display: text.slice(0, start).trimEnd(), lead: null, pending: true };
+  }
+  const jsonStr = text.slice(start + LEAD_START.length, end).trim();
+  let parsed = null;
+  try { parsed = JSON.parse(jsonStr); } catch {}
+  const display = (text.slice(0, start) + text.slice(end + LEAD_END.length)).trim();
+  return { display, lead: parsed };
+}
+
+async function sendLead(lead) {
+  try {
+    const res = await fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(lead),
+    });
+    if (!res.ok) throw new Error('lead endpoint ' + res.status);
+    addLeadCard(true, lead.email);
+    state.leadSent = true;
+  } catch (err) {
+    console.error('lead send failed', err);
+    addLeadCard(false, lead.email);
+  }
+}
+
+/* === Chat call === */
+async function sendMessage(text, options = {}) {
+  if (!options.hideUser) addMessage('user', text);
   state.messages.push({ role: 'user', content: text });
 
   const loading = addLoadingMessage();
@@ -709,18 +455,14 @@ async function sendMessage(text) {
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: state.model,
-        messages: state.messages,
-      }),
+      body: JSON.stringify({ messages: state.messages }),
     });
 
     if (!response.ok) {
       const errorText = await response.text();
-      throw new Error('API-fel ' + response.status + ': ' + errorText);
+      throw new Error('Chat error ' + response.status + ': ' + errorText);
     }
 
-    // Ersätt loading med en bot-bubbla
     loading.remove();
     bubble = addMessage('bot', '');
 
@@ -742,20 +484,26 @@ async function sendMessage(text) {
           const obj = JSON.parse(data);
           if (obj.type === 'content_block_delta' && obj.delta?.type === 'text_delta') {
             fullText += obj.delta.text;
-            bubble.innerHTML = renderMarkdown(fullText);
+            const { display } = extractLead(fullText);
+            bubble.innerHTML = renderMarkdown(display);
             mainEl.scrollTop = mainEl.scrollHeight;
           }
-        } catch (e) {
-          // ignorera enstaka parsefel
-        }
+        } catch (e) {}
       }
     }
 
+    // Spara hela texten i historiken så modellen ser sin egen markör nästa tur
     state.messages.push({ role: 'assistant', content: fullText });
+
+    // När streamen är klar — kolla efter lead-markör och skicka mail
+    const { lead } = extractLead(fullText);
+    if (lead && !state.leadSent && lead.email) {
+      await sendLead(lead);
+    }
   } catch (err) {
     if (loading.parentNode) loading.remove();
-    const errMsg = '⚠️ **Fel:** ' + (err.message || err) +
-      '\n\nKontrollera att webbappen är deployad till Vercel med `ANTHROPIC_API_KEY` satt som env-variabel, och försök igen.';
+    const errMsg = '⚠️ **Något strulade.** ' + (err.message || err) +
+      '\n\nOm det fortsätter — maila info@biluppgifter.se direkt.';
     if (bubble) {
       bubble.innerHTML = renderMarkdown(errMsg);
     } else {
@@ -763,6 +511,13 @@ async function sendMessage(text) {
     }
   }
 }
+
+/* === Boot — kicka igång konversationen så botten öppnar med sin discovery-fråga === */
+async function start() {
+  // Skickar en dold start-trigger så botten levererar sin öppning. Användaren ser bara botten.
+  await sendMessage('Hej', { hideUser: true });
+}
+start();
 </script>
 </body>
 </html>
