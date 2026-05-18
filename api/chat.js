@@ -141,7 +141,7 @@ export default async function handler(req) {
     });
   }
 
-  const chosenModel = ALLOWED_MODELS.has(model) ? model : 'claude-sonnet-4-5';
+  const chosenModel = ALLOWED_MODELS.has(model) ? model : 'claude-haiku-4-5';
 
   const sanitizedMessages = messages
     .filter(m => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
