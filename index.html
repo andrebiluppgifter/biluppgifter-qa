@@ -60,18 +60,16 @@
   .brand .logo {
     width: 40px;
     height: 40px;
-    border-radius: 10px;
-    background: var(--accent);
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-weight: 700;
-    font-style: italic;
-    font-size: 26px;
-    font-family: Georgia, "Times New Roman", serif;
-    line-height: 1;
-    padding-bottom: 4px;
+  }
+  .brand .logo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
   }
   .brand small {
     color: var(--muted);
@@ -122,12 +120,14 @@
     color: var(--accent);
   }
   .msg.bot .avatar {
-    background: var(--accent);
-    color: white;
-    font-style: italic;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 20px;
-    padding-bottom: 3px;
+    background: transparent;
+    padding: 0;
+  }
+  .msg.bot .avatar img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
   }
   .msg .bubble {
     flex: 1;
@@ -279,7 +279,7 @@
 <body>
 <header>
   <div class="brand">
-    <div class="logo">b</div>
+    <div class="logo"><img src="/plate.svg" alt="Biluppgifter"></div>
     <div>
       Biluppgifter
       <small>Hitta rätt data för ert behov</small>
@@ -373,7 +373,7 @@ function renderMarkdown(text) {
 function addMessage(role, content) {
   const el = document.createElement('div');
   el.className = 'msg ' + role;
-  const avatar = role === 'user' ? 'Du' : 'b';
+  const avatar = role === 'user' ? 'Du' : '<img src="/plate.svg" alt="b">';
   el.innerHTML = '<div class="avatar">' + avatar + '</div><div class="bubble"></div>';
   const bubble = el.querySelector('.bubble');
   bubble.innerHTML = renderMarkdown(content);
@@ -385,7 +385,7 @@ function addMessage(role, content) {
 function addLoadingMessage() {
   const el = document.createElement('div');
   el.className = 'msg bot';
-  el.innerHTML = '<div class="avatar">b</div><div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div>';
+  el.innerHTML = '<div class="avatar"><img src="/plate.svg" alt="b"></div><div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div>';
   chatEl.appendChild(el);
   mainEl.scrollTop = mainEl.scrollHeight;
   return el;
