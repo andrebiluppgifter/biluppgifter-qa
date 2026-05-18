@@ -110,36 +110,44 @@ export default async function handler(req) {
       </p>
     </body></html>`;
 
-  // Ortto EU transactional email API.
-  // OBS: om felmeddelandet kommer som 4xx — kolla att din Ortto-nyckel har "Transactional Email"-permission
-  // och att avsändaradressen (LEAD_FROM_EMAIL) är verifierad i ert Ortto-konto under
-  // Settings → Email → Sender authentication.
+  // Ortto Transactional Email API.
+  // Endpoint är globalt (ap3api.com) — Ortto routar internt baserat på API-nyckel.
+  // OBS: avsändaradressen (LEAD_FROM_EMAIL) måste vara verifierad i Ortto under
+  // Settings → Email → Sender authentication, och nyckeln behöver Transactional Email-permission.
   let orttoRes;
   try {
-    orttoRes = await fetch('https://api.eu.ortto.app/v1/email/single', {
+    orttoRes = await fetch('https://api.ap3api.com/v1/transactional/send', {
       method: 'POST',
       headers: {
         'X-Api-Key': orttoKey,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        // Mottagare som kontakt-array. Vi använder en placeholder-identitet eftersom mottagaren
-        // är internt (Biluppgifter), inte leadets faktiska person.
-        contacts: [{
-          email: leadTo,
-          first_name: 'Lead',
-          last_name: 'Notifiering',
+        asset: {
+          from_email: leadFrom,
+          from_name: leadFromName,
+          reply_to: safe.email, // svar går till leadets email
+          subject,
+          email_name: 'biluppgifter-api-lead-notification',
+          no_click_tracks: true,
+          no_opens_tracks: true,
+          html_body: htmlBody,
+          liquid_syntax_enabled: false, // vi använder inte Liquid-templating
+        },
+        emails: [{
+          fields: {
+            'str::email': leadTo,
+            'str::first': 'Biluppgifter',
+            'str::last': 'Team',
+            'bol::sp': true, // single opt-in (intern mottagare)
+            'str::soi-ctx': 'API lead notification (system)',
+          },
+          location: null,
         }],
-        // Ämnesrad
-        subject,
-        // Email-innehåll inline
-        html_body: htmlBody,
-        text_body: textBody,
-        // Avsändare — måste vara verifierad i Ortto under "Sender authentication"
-        from_email: leadFrom,
-        from_name: leadFromName,
-        // Reply-to går till leadets email så ett ev. svar går rätt
-        reply_to: safe.email,
+        merge_by: ['str::email'],
+        merge_strategy: 2,    // create or update
+        find_strategy: 0,
+        skip_non_existing: false,
       }),
     });
   } catch (err) {
