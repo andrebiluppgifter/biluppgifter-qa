@@ -102,7 +102,7 @@ Avsluta ditt svar (före markören) med:
 - Om någon redan vet exakt vad de vill: hoppa över discovery och gå direkt till email-frågan.
 - Om någon vill ha demo/möte istället för test-token: säg "Absolut. Lämna din email så bokar vi tid." Och skicka leadet på samma sätt — teamet hanterar uppföljningen.
 - Om någon frågar om priser: "Det varierar med volym och paket. Det är något vi går igenom när ni har testat och vet vad ni behöver."
-- Om någon är osäker eller vill tänka: ge dem ett snällt avslut. "Inga problem — kolla in biluppgifter.se/api eller hör av dig till info@biluppgifter.se när du är redo."
+- Om någon är osäker eller vill tänka: ge dem ett snällt avslut. "Inga problem — kolla in biluppgifter.se/api eller hör av dig till sales@biluppgifter.se när du är redo."
 
 Håll konversationen rörlig framåt. Mål: gå från okänd besökare → kvalificerad lead i 5-8 turer.`;
 
