@@ -302,7 +302,7 @@
     </button>
   </form>
   <div class="footer-note">
-    Vi behandlar dina uppgifter enligt vår <a href="https://www.biluppgifter.se" target="_blank">integritetspolicy</a>. Kontakt: info@biluppgifter.se
+    Vi behandlar dina uppgifter enligt vår <a href="https://www.biluppgifter.se" target="_blank">integritetspolicy</a>. Kontakt: sales@biluppgifter.se
   </div>
 </footer>
 
@@ -401,7 +401,7 @@ function addLeadCard(success, email) {
   } else {
     el.innerHTML =
       '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' +
-      '<div><strong>Något gick fel</strong>Vi kunde inte skicka dina uppgifter automatiskt. Maila istället <strong>info@biluppgifter.se</strong> med din kontakt så hör vi av oss.</div>';
+      '<div><strong>Något gick fel</strong>Vi kunde inte skicka dina uppgifter automatiskt. Maila istället <strong>sales@biluppgifter.se</strong> med din kontakt så hör vi av oss.</div>';
   }
   chatEl.appendChild(el);
   mainEl.scrollTop = mainEl.scrollHeight;
@@ -503,7 +503,7 @@ async function sendMessage(text, options = {}) {
   } catch (err) {
     if (loading.parentNode) loading.remove();
     const errMsg = '⚠️ **Något strulade.** ' + (err.message || err) +
-      '\n\nOm det fortsätter — maila info@biluppgifter.se direkt.';
+      '\n\nOm det fortsätter — maila sales@biluppgifter.se direkt.';
     if (bubble) {
       bubble.innerHTML = renderMarkdown(errMsg);
     } else {
