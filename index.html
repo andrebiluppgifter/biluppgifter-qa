@@ -4,35 +4,43 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Biluppgifter — Hitta rätt data för ditt behov</title>
+<link rel="icon" href="/plate.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reddit+Sans:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f4f6f8;
+    --bg: #e9eaec;
     --panel: #ffffff;
-    --panel-2: #fafbfc;
-    --border: #e5e7eb;
-    --border-light: #f0f2f5;
-    --text: #1f2937;
-    --muted: #6b7280;
-    --accent: #ff7a1a;
-    --accent-2: #e86a0d;
-    --accent-soft: #fff4e8;
-    --user-bg: #fff4e8;
-    --user-border: #f5dcc1;
+    --panel-2: #f6f7f9;
+    --header-bg: #1a1a1a;
+    --border: #e1e3e6;
+    --border-light: #eef0f2;
+    --text: #1a1a1a;
+    --muted: #6b6f76;
+    --muted-2: #9a9ea5;
+    --accent: #ff8000;
+    --accent-2: #e57100;
+    --accent-soft: #fff4e5;
+    --accent-soft-2: #ffe8cc;
+    --user-bg: #fff4e5;
     --bot-bg: #ffffff;
-    --code-bg: #f5f7fa;
-    --code-text: #d97706;
+    --code-bg: #f4f6f8;
+    --code-text: #c2570e;
     --ok: #16a34a;
     --danger: #dc2626;
-    --radius: 14px;
-    --radius-lg: 18px;
-    --shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
-    --shadow-lg: 0 8px 32px rgba(15, 23, 42, 0.08);
+    --radius-sm: 6px;
+    --radius: 10px;
+    --radius-lg: 14px;
+    --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05);
+    --shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
+    --shadow-lg: 0 8px 32px rgba(15, 23, 42, 0.12);
   }
   * { box-sizing: border-box; }
   html, body { height: 100%; }
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, sans-serif;
+    font-family: "Reddit Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background: var(--bg);
     color: var(--text);
     display: flex;
@@ -40,56 +48,78 @@
     height: 100vh;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+    line-height: 1.5;
   }
+
+  /* ============ HEADER ============ */
   header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 24px;
-    background: var(--panel);
-    border-bottom: 1px solid var(--border);
+    padding: 14px 22px;
+    background: var(--header-bg);
+    flex-shrink: 0;
   }
   .brand {
     display: flex;
     align-items: center;
     gap: 12px;
-    font-weight: 700;
-    font-size: 17px;
-    color: var(--accent);
+    text-decoration: none;
   }
-  .brand .logo {
-    width: 40px;
-    height: 40px;
-    flex-shrink: 0;
+  .brand .logo-tile {
+    width: 44px;
+    height: 44px;
+    background: var(--accent);
+    border-radius: 9px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
   }
-  .brand .logo img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: contain;
+  .brand .logo-tile svg {
+    width: 26px;
+    height: 26px;
+    fill: #fff;
   }
-  .brand small {
-    color: var(--muted);
-    font-weight: 400;
+  .brand-text {
+    color: #fff;
+    line-height: 1.15;
+  }
+  .brand-text .wordmark {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.4px;
+  }
+  .brand-text .sublabel {
     font-size: 12px;
-    display: block;
+    color: rgba(255,255,255,0.6);
+    font-weight: 400;
     margin-top: 2px;
   }
-  header .actions { display: flex; gap: 12px; align-items: center; font-size: 13px; color: var(--muted); }
-  header .actions a { color: var(--muted); text-decoration: none; font-weight: 500; }
-  header .actions a:hover { color: var(--accent); }
+  header .actions { display: flex; gap: 12px; align-items: center; }
+  header .actions a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 13.5px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    transition: background 0.15s ease;
+  }
+  header .actions a:hover { background: rgba(255,255,255,0.16); color: #fff; }
 
+  /* ============ MAIN ============ */
   main {
     flex: 1;
     overflow-y: auto;
     padding: 28px 20px 140px;
     scroll-behavior: smooth;
   }
+
   .chat {
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -107,46 +137,44 @@
   .msg .avatar {
     width: 34px;
     height: 34px;
-    border-radius: 9px;
+    border-radius: 8px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    font-size: 14px;
+    font-weight: 600;
+    font-size: 13px;
+    overflow: hidden;
   }
   .msg.user .avatar {
-    background: var(--user-bg);
-    color: var(--accent);
+    background: var(--accent-soft-2);
+    color: var(--accent-2);
   }
   .msg.bot .avatar {
-    background: transparent;
-    padding: 0;
+    background: var(--accent);
   }
-  .msg.bot .avatar img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: contain;
+  .msg.bot .avatar svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
   }
   .msg .bubble {
     flex: 1;
     background: var(--bot-bg);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+    border: none;
+    border-radius: var(--radius-lg);
     padding: 14px 18px;
     line-height: 1.6;
     font-size: 15px;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-sm);
   }
   .msg.user .bubble {
     background: var(--user-bg);
-    border-color: var(--user-border);
     color: var(--text);
   }
   .bubble p { margin: 0 0 10px; }
   .bubble p:last-child { margin-bottom: 0; }
-  .bubble h3, .bubble h4 { margin: 14px 0 8px; line-height: 1.3; font-size: 15px; }
+  .bubble h3, .bubble h4 { margin: 14px 0 8px; line-height: 1.3; font-size: 15px; font-weight: 600; }
   .bubble ul, .bubble ol { padding-left: 22px; margin: 6px 0 10px; }
   .bubble li { margin-bottom: 4px; }
   .bubble code {
@@ -156,7 +184,6 @@
     font-family: "SF Mono", Monaco, Consolas, monospace;
     font-size: 13px;
     color: var(--code-text);
-    border: 1px solid var(--border-light);
   }
   .bubble strong { font-weight: 600; color: var(--text); }
   .bubble a { color: var(--accent); font-weight: 500; text-decoration: none; }
@@ -182,10 +209,11 @@
     30% { opacity: 1; transform: scale(1); }
   }
 
+  /* ============ LEAD CARD ============ */
   .lead-card {
     background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
     color: white;
-    border-radius: var(--radius);
+    border-radius: var(--radius-lg);
     padding: 16px 20px;
     margin: 12px 0;
     display: flex;
@@ -202,30 +230,31 @@
   .lead-card svg { flex-shrink: 0; }
   .lead-card strong { display: block; margin-bottom: 4px; font-weight: 600; }
 
+  /* ============ COMPOSER (FOOTER) ============ */
   footer {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 16px 20px 20px;
-    background: linear-gradient(180deg, transparent 0%, rgba(244, 246, 248, 0.9) 30%, var(--bg) 100%);
+    padding: 16px 20px 18px;
+    background: linear-gradient(180deg, transparent 0%, rgba(233, 234, 236, 0.85) 30%, var(--bg) 100%);
     pointer-events: none;
   }
   .composer {
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
     background: var(--panel);
     border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 8px 8px 8px 18px;
+    border-radius: 999px;
+    padding: 6px 6px 6px 22px;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     gap: 8px;
     box-shadow: var(--shadow-lg);
     pointer-events: auto;
-    transition: border-color 0.15s ease;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
   }
-  .composer:focus-within { border-color: var(--accent); }
+  .composer:focus-within { border-color: var(--accent); box-shadow: 0 8px 32px rgba(255, 128, 0, 0.18); }
   .composer textarea {
     flex: 1;
     background: transparent;
@@ -235,28 +264,30 @@
     font-size: 15px;
     resize: none;
     outline: none;
-    padding: 10px 0;
+    padding: 12px 0;
     max-height: 160px;
     min-height: 24px;
     line-height: 1.5;
+    font-family: inherit;
   }
-  .composer textarea::placeholder { color: #94a3b8; }
+  .composer textarea::placeholder { color: var(--muted-2); }
   .send-btn {
     background: var(--accent);
     color: white;
     border: none;
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.15s ease;
+    transition: background 0.15s ease;
+    flex-shrink: 0;
   }
   .send-btn:hover:not(:disabled) { background: var(--accent-2); }
-  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-  .send-btn svg { width: 18px; height: 18px; }
+  .send-btn:disabled { background: var(--muted-2); cursor: not-allowed; }
+  .send-btn svg { width: 20px; height: 20px; }
 
   .footer-note {
     text-align: center;
@@ -268,23 +299,33 @@
   .footer-note a { color: var(--accent); text-decoration: none; }
   .footer-note a:hover { text-decoration: underline; }
 
+  /* ============ MOBILE ============ */
   @media (max-width: 640px) {
     header { padding: 12px 14px; }
-    main { padding: 16px 12px 120px; }
+    .brand .logo-tile { width: 38px; height: 38px; border-radius: 8px; }
+    .brand .logo-tile svg { width: 22px; height: 22px; }
+    .brand-text .wordmark { font-size: 18px; }
+    .brand-text .sublabel { display: none; }
+    header .actions a { padding: 6px 10px; font-size: 12.5px; }
+    main { padding: 18px 12px 130px; }
     footer { padding: 12px 12px 14px; }
-    .brand small { display: none; }
+    .composer { padding: 4px 4px 4px 18px; }
+    .composer textarea { padding: 10px 0; }
+    .send-btn { width: 40px; height: 40px; }
   }
 </style>
 </head>
 <body>
 <header>
-  <div class="brand">
-    <div class="logo"><img src="/plate.svg" alt="Biluppgifter"></div>
-    <div>
-      Biluppgifter
-      <small>Hitta rätt data för ert behov</small>
+  <a href="/" class="brand">
+    <div class="logo-tile">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="m73.474 0c-7.4644 0-13.474 6.0093-13.474 13.474v485.05c0 7.4644 6.0093 13.474 13.474 13.474h188.69c81.55 0 155.51-49.421 186.72-124.76 31.208-75.343 13.852-162.59-43.813-220.25l-57.163-57.163c-5.2781-5.2781-13.777-5.2781-19.055 0l-76.218 76.218c-5.2781 5.2781-5.2781 13.777 0 19.055l57.166 57.163c19.404 19.404 25.104 48.063 14.603 73.416-10.501 25.353-34.795 41.589-62.237 41.589 0 0-47.283-0.0164-53.955 0s-13.387-6.5755-13.474-13.474c-0.0866-6.8982 0-350.32 0-350.32 0-7.4644-6.0093-13.474-13.474-13.474z"/></svg>
     </div>
-  </div>
+    <div class="brand-text">
+      <div class="wordmark">biluppgifter</div>
+      <div class="sublabel">Hitta rätt data för ert behov</div>
+    </div>
+  </a>
   <div class="actions">
     <a href="https://www.biluppgifter.se" target="_blank">biluppgifter.se</a>
   </div>
@@ -318,6 +359,8 @@ const inputEl = $('input');
 const composerEl = $('composer');
 const sendBtn = $('sendBtn');
 const mainEl = $('main');
+
+const BOT_AVATAR_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="m73.474 0c-7.4644 0-13.474 6.0093-13.474 13.474v485.05c0 7.4644 6.0093 13.474 13.474 13.474h188.69c81.55 0 155.51-49.421 186.72-124.76 31.208-75.343 13.852-162.59-43.813-220.25l-57.163-57.163c-5.2781-5.2781-13.777-5.2781-19.055 0l-76.218 76.218c-5.2781 5.2781-5.2781 13.777 0 19.055l57.166 57.163c19.404 19.404 25.104 48.063 14.603 73.416-10.501 25.353-34.795 41.589-62.237 41.589 0 0-47.283-0.0164-53.955 0s-13.387-6.5755-13.474-13.474c-0.0866-6.8982 0-350.32 0-350.32 0-7.4644-6.0093-13.474-13.474-13.474z"/></svg>';
 
 function autoresize(el) {
   el.style.height = 'auto';
@@ -373,7 +416,7 @@ function renderMarkdown(text) {
 function addMessage(role, content) {
   const el = document.createElement('div');
   el.className = 'msg ' + role;
-  const avatar = role === 'user' ? 'Du' : '<img src="/plate.svg" alt="b">';
+  const avatar = role === 'user' ? 'Du' : BOT_AVATAR_SVG;
   el.innerHTML = '<div class="avatar">' + avatar + '</div><div class="bubble"></div>';
   const bubble = el.querySelector('.bubble');
   bubble.innerHTML = renderMarkdown(content);
@@ -385,7 +428,7 @@ function addMessage(role, content) {
 function addLoadingMessage() {
   const el = document.createElement('div');
   el.className = 'msg bot';
-  el.innerHTML = '<div class="avatar"><img src="/plate.svg" alt="b"></div><div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div>';
+  el.innerHTML = '<div class="avatar">' + BOT_AVATAR_SVG + '</div><div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div>';
   chatEl.appendChild(el);
   mainEl.scrollTop = mainEl.scrollHeight;
   return el;
@@ -416,7 +459,6 @@ function extractLead(text) {
   if (start === -1) return { display: text, lead: null };
   const end = text.indexOf(LEAD_END, start);
   if (end === -1) {
-    // Markören är påbörjad men ej avslutad — dölj från start så användaren inte ser den
     return { display: text.slice(0, start).trimEnd(), lead: null, pending: true };
   }
   const jsonStr = text.slice(start + LEAD_START.length, end).trim();
@@ -492,10 +534,8 @@ async function sendMessage(text, options = {}) {
       }
     }
 
-    // Spara hela texten i historiken så modellen ser sin egen markör nästa tur
     state.messages.push({ role: 'assistant', content: fullText });
 
-    // När streamen är klar — kolla efter lead-markör och skicka mail
     const { lead } = extractLead(fullText);
     if (lead && !state.leadSent && lead.email) {
       await sendLead(lead);
@@ -514,7 +554,6 @@ async function sendMessage(text, options = {}) {
 
 /* === Boot — kicka igång konversationen så botten öppnar med sin discovery-fråga === */
 async function start() {
-  // Skickar en dold start-trigger så botten levererar sin öppning. Användaren ser bara botten.
   await sendMessage('Hej', { hideUser: true });
 }
 start();
