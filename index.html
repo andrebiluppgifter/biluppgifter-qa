@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Biluppgifter API-assistent</title>
+<title>Biluppgifter — Hitta rätt data för ditt behov</title>
 <link rel="icon" href="/plate.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,49 +97,18 @@
     font-weight: 400;
     margin-top: 2px;
   }
-  header .actions { display: flex; gap: 8px; align-items: center; }
-
-  .hdr-btn {
-    width: 38px;
-    height: 38px;
-    border-radius: 8px;
-    background: rgba(255,255,255,0.08);
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.15s ease;
-    font-family: inherit;
-  }
-  .hdr-btn:hover { background: rgba(255,255,255,0.16); }
-  .hdr-btn svg { width: 20px; height: 20px; fill: currentColor; }
-
-  .user-pill {
-    background: rgba(255,255,255,0.08);
-    color: #fff;
-    border: none;
-    padding: 8px 14px 8px 10px;
-    border-radius: 999px;
-    font-size: 13px;
+  header .actions { display: flex; gap: 12px; align-items: center; }
+  header .actions a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
     font-weight: 500;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 13.5px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
     transition: background 0.15s ease;
-    font-family: inherit;
-    max-width: 260px;
   }
-  .user-pill:hover { background: rgba(255,255,255,0.16); }
-  .user-pill svg { width: 16px; height: 16px; fill: #fff; flex-shrink: 0; }
-  .user-pill span {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 200px;
-  }
+  header .actions a:hover { background: rgba(255,255,255,0.16); color: #fff; }
 
   /* ============ MAIN ============ */
   main {
@@ -149,74 +118,8 @@
     scroll-behavior: smooth;
   }
 
-  /* ============ WELCOME / HERO ============ */
-  .welcome {
-    max-width: 820px;
-    margin: 20px auto 24px;
-    text-align: center;
-  }
-  .welcome h1 {
-    font-size: 32px;
-    margin: 0 0 8px;
-    color: var(--text);
-    font-weight: 600;
-    letter-spacing: -0.6px;
-    line-height: 1.2;
-    position: relative;
-    display: inline-block;
-  }
-  .welcome h1 .swoosh {
-    display: block;
-    margin: 6px auto 0;
-    width: 240px;
-    max-width: 80%;
-  }
-  .welcome .lede {
-    color: var(--muted);
-    margin: 18px auto 30px;
-    font-size: 16px;
-    line-height: 1.55;
-    max-width: 600px;
-  }
-  .examples {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 12px;
-    margin-top: 20px;
-  }
-  .example {
-    background: var(--panel);
-    border: none;
-    padding: 18px 18px;
-    border-radius: var(--radius-lg);
-    cursor: pointer;
-    text-align: left;
-    font-size: 13.5px;
-    color: var(--muted);
-    transition: all 0.15s ease;
-    font-family: inherit;
-    box-shadow: var(--shadow-sm);
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    line-height: 1.4;
-  }
-  .example:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow);
-    color: var(--text);
-  }
-  .example strong {
-    display: block;
-    color: var(--text);
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 2px;
-  }
-
-  /* ============ CHAT ============ */
   .chat {
-    max-width: 820px;
+    max-width: 760px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -250,11 +153,10 @@
   .msg.bot .avatar {
     background: var(--accent);
   }
-  .msg.bot .avatar img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
+  .msg.bot .avatar svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
   }
   .msg .bubble {
     flex: 1;
@@ -272,14 +174,7 @@
   }
   .bubble p { margin: 0 0 10px; }
   .bubble p:last-child { margin-bottom: 0; }
-  .bubble h1, .bubble h2, .bubble h3, .bubble h4 {
-    margin: 14px 0 8px;
-    line-height: 1.3;
-    font-weight: 600;
-  }
-  .bubble h1 { font-size: 18px; }
-  .bubble h2 { font-size: 16px; }
-  .bubble h3 { font-size: 15px; }
+  .bubble h3, .bubble h4 { margin: 14px 0 8px; line-height: 1.3; font-size: 15px; font-weight: 600; }
   .bubble ul, .bubble ol { padding-left: 22px; margin: 6px 0 10px; }
   .bubble li { margin-bottom: 4px; }
   .bubble code {
@@ -290,41 +185,9 @@
     font-size: 13px;
     color: var(--code-text);
   }
-  .bubble pre {
-    background: var(--code-bg);
-    border: 1px solid var(--border-light);
-    padding: 12px 14px;
-    border-radius: var(--radius);
-    overflow-x: auto;
-    margin: 10px 0;
-  }
-  .bubble pre code {
-    background: none;
-    padding: 0;
-    color: #374151;
-    font-size: 12.5px;
-  }
-  .bubble table {
-    border-collapse: collapse;
-    margin: 10px 0;
-    font-size: 13.5px;
-    width: 100%;
-  }
-  .bubble th, .bubble td {
-    border: 1px solid var(--border);
-    padding: 8px 10px;
-    text-align: left;
-  }
-  .bubble th { background: var(--panel-2); font-weight: 600; }
-  .bubble a { color: var(--accent); text-decoration: none; font-weight: 500; }
-  .bubble a:hover { text-decoration: underline; }
-  .bubble blockquote {
-    border-left: 3px solid var(--accent);
-    padding-left: 12px;
-    margin: 10px 0;
-    color: var(--muted);
-  }
   .bubble strong { font-weight: 600; color: var(--text); }
+  .bubble a { color: var(--accent); font-weight: 500; text-decoration: none; }
+  .bubble a:hover { text-decoration: underline; }
 
   .typing {
     display: inline-flex;
@@ -346,6 +209,27 @@
     30% { opacity: 1; transform: scale(1); }
   }
 
+  /* ============ LEAD CARD ============ */
+  .lead-card {
+    background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+    color: white;
+    border-radius: var(--radius-lg);
+    padding: 16px 20px;
+    margin: 12px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 14px;
+    line-height: 1.5;
+    box-shadow: 0 4px 14px rgba(22, 163, 74, 0.25);
+  }
+  .lead-card.error {
+    background: linear-gradient(135deg, #dc2626 0%, #f87171 100%);
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.25);
+  }
+  .lead-card svg { flex-shrink: 0; }
+  .lead-card strong { display: block; margin-bottom: 4px; font-weight: 600; }
+
   /* ============ COMPOSER (FOOTER) ============ */
   footer {
     position: fixed;
@@ -357,7 +241,7 @@
     pointer-events: none;
   }
   .composer {
-    max-width: 820px;
+    max-width: 760px;
     margin: 0 auto;
     background: var(--panel);
     border: 1px solid var(--border);
@@ -405,174 +289,15 @@
   .send-btn:disabled { background: var(--muted-2); cursor: not-allowed; }
   .send-btn svg { width: 20px; height: 20px; }
 
-  .footer-attribution {
+  .footer-note {
     text-align: center;
-    font-size: 12px;
+    font-size: 11.5px;
     color: var(--muted);
     margin-top: 10px;
     pointer-events: auto;
   }
-  .footer-attribution a { color: var(--accent); text-decoration: none; }
-  .footer-attribution a:hover { text-decoration: underline; }
-
-  /* ============ DIALOG ============ */
-  dialog {
-    background: var(--panel);
-    color: var(--text);
-    border: none;
-    border-radius: var(--radius-lg);
-    padding: 0;
-    max-width: 480px;
-    width: calc(100% - 40px);
-    box-shadow: var(--shadow-lg);
-    font-family: inherit;
-  }
-  dialog::backdrop { background: rgba(26, 26, 26, 0.55); backdrop-filter: blur(4px); }
-  .dialog-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 22px;
-    border-bottom: 1px solid var(--border);
-  }
-  .dialog-header h2 { margin: 0; font-size: 17px; font-weight: 600; }
-  .dialog-body { padding: 22px; }
-  .field { margin-bottom: 16px; }
-  .field label {
-    display: block;
-    font-size: 13px;
-    color: var(--text);
-    margin-bottom: 8px;
-    font-weight: 600;
-  }
-  .field input, .field select {
-    width: 100%;
-    background: var(--panel-2);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 10px 14px;
-    border-radius: var(--radius);
-    font-size: 14px;
-    font-family: inherit;
-  }
-  .field input:focus, .field select:focus { outline: none; border-color: var(--accent); background: var(--panel); }
-  .field .hint { font-size: 12.5px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
-  .field .hint a { color: var(--accent); }
-  .dialog-footer {
-    padding: 14px 22px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-  }
-  .btn {
-    background: var(--panel);
-    color: var(--text);
-    border: 1px solid var(--border);
-    padding: 9px 16px;
-    border-radius: var(--radius);
-    font-size: 13.5px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.15s ease;
-    font-family: inherit;
-  }
-  .btn:hover { background: var(--panel-2); }
-  .btn.primary {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: white;
-    font-weight: 600;
-  }
-  .btn.primary:hover { background: var(--accent-2); border-color: var(--accent-2); }
-  .btn.ghost { background: transparent; border-color: transparent; color: var(--muted); }
-  .btn.ghost:hover { background: var(--panel-2); color: var(--text); }
-
-  /* ============ EMAIL GATE ============ */
-  .gate-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(26, 26, 26, 0.6);
-    backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    padding: 20px;
-  }
-  .gate-card {
-    background: var(--panel);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    max-width: 460px;
-    width: 100%;
-    padding: 36px 32px 28px;
-    text-align: center;
-  }
-  .gate-card .gate-logo {
-    width: 56px;
-    height: 56px;
-    background: var(--accent);
-    border-radius: 12px;
-    margin: 0 auto 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .gate-card .gate-logo svg { width: 32px; height: 32px; fill: #fff; }
-  .gate-card h2 {
-    margin: 0 0 10px;
-    font-size: 22px;
-    color: var(--text);
-    font-weight: 600;
-    letter-spacing: -0.3px;
-  }
-  .gate-card p {
-    margin: 0 0 22px;
-    color: var(--muted);
-    font-size: 14.5px;
-    line-height: 1.55;
-  }
-  .gate-card form { display: flex; flex-direction: column; gap: 10px; }
-  .gate-card input {
-    width: 100%;
-    background: var(--panel-2);
-    border: 1px solid var(--border);
-    padding: 13px 16px;
-    border-radius: 999px;
-    font-size: 15px;
-    font-family: inherit;
-    color: var(--text);
-    text-align: center;
-  }
-  .gate-card input:focus { outline: none; border-color: var(--accent); background: var(--panel); }
-  .gate-card input.error { border-color: var(--danger); background: #fef2f2; }
-  .gate-card button.submit {
-    background: var(--accent);
-    color: white;
-    border: none;
-    padding: 14px 16px;
-    border-radius: 999px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.15s ease;
-    font-family: inherit;
-    margin-top: 4px;
-  }
-  .gate-card button.submit:hover { background: var(--accent-2); }
-  .gate-card .err-msg {
-    color: var(--danger);
-    font-size: 12.5px;
-    min-height: 16px;
-    margin-top: -2px;
-  }
-  .gate-card .privacy {
-    margin-top: 18px;
-    font-size: 11.5px;
-    color: var(--muted);
-    line-height: 1.5;
-  }
+  .footer-note a { color: var(--accent); text-decoration: none; }
+  .footer-note a:hover { text-decoration: underline; }
 
   /* ============ MOBILE ============ */
   @media (max-width: 640px) {
@@ -581,17 +306,12 @@
     .brand .logo-tile svg { width: 22px; height: 22px; }
     .brand-text .wordmark { font-size: 18px; }
     .brand-text .sublabel { display: none; }
-    .user-pill span { max-width: 80px; }
+    header .actions a { padding: 6px 10px; font-size: 12.5px; }
     main { padding: 18px 12px 130px; }
-    .welcome { margin: 12px auto 18px; }
-    .welcome h1 { font-size: 24px; }
-    .welcome .lede { font-size: 14.5px; margin: 14px auto 22px; }
-    .examples { grid-template-columns: 1fr; }
     footer { padding: 12px 12px 14px; }
     .composer { padding: 4px 4px 4px 18px; }
     .composer textarea { padding: 10px 0; }
     .send-btn { width: 40px; height: 40px; }
-    .gate-card { padding: 28px 22px 22px; }
   }
 </style>
 </head>
@@ -599,424 +319,48 @@
 <header>
   <a href="/" class="brand">
     <div class="logo-tile">
-      <!-- Biluppgifter b-icon (samma form som på biluppgifter.se) -->
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="m73.474 0c-7.4644 0-13.474 6.0093-13.474 13.474v485.05c0 7.4644 6.0093 13.474 13.474 13.474h188.69c81.55 0 155.51-49.421 186.72-124.76 31.208-75.343 13.852-162.59-43.813-220.25l-57.163-57.163c-5.2781-5.2781-13.777-5.2781-19.055 0l-76.218 76.218c-5.2781 5.2781-5.2781 13.777 0 19.055l57.166 57.163c19.404 19.404 25.104 48.063 14.603 73.416-10.501 25.353-34.795 41.589-62.237 41.589 0 0-47.283-0.0164-53.955 0s-13.387-6.5755-13.474-13.474c-0.0866-6.8982 0-350.32 0-350.32 0-7.4644-6.0093-13.474-13.474-13.474z"/></svg>
     </div>
     <div class="brand-text">
       <div class="wordmark">biluppgifter</div>
-      <div class="sublabel">API-assistent · Endpoints · Use cases</div>
+      <div class="sublabel">Hitta rätt data för ert behov</div>
     </div>
   </a>
   <div class="actions">
-    <button class="user-pill" id="emailPill" title="Ditt konto">
-      <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-      <span id="emailPillText">—</span>
-    </button>
-    <button class="hdr-btn" id="resetBtn" title="Ny konversation">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
-    </button>
+    <a href="https://www.biluppgifter.se" target="_blank">biluppgifter.se</a>
   </div>
 </header>
 
 <main id="main">
-  <div id="welcome" class="welcome">
-    <h1>
-      Vad vill du veta om Biluppgifters API?
-      <svg class="swoosh" viewBox="0 0 1418 125" fill="#ff8000" xmlns="http://www.w3.org/2000/svg">
-        <path d="M1412.29 72.17c-11.04-5.78-20.07-14.33-85.46-25.24-22.37-3.63-44.69-7.56-67.07-11.04-167.11-22.06-181.65-21.24-304.94-30.56C888.78 1.39 822.57 1.1 756.44 0c-46.63-.11-93.27 1.56-139.89 2.5C365.5 13.55 452.86 7.68 277.94 23.15 202.57 33.32 127.38 45.01 52.07 55.69c-11.23 2.41-22.63 4.17-33.71 7.22C6.1 66.33 5.64 66.19 3.89 67.79c-7.99 5.78-2.98 20.14 8.72 17.5 33.99-9.47 32.28-8.57 178.06-29.66 4.26 4.48 7.29 3.38 18.42 3.11 13.19-.32 26.38-.53 39.56-1.12 53.51-3.81 106.88-9.62 160.36-13.95 18.41-1.3 36.8-3.12 55.21-4.7 23.21-1.16 46.43-2.29 69.65-3.4 120.28-2.16 85.46-3.13 234.65-1.52 23.42.99 1.57-.18 125.72 6.9 96.61 8.88 200.92 27.94 295.42 46.12 40.87 7.91 116.67 23.2 156.31 36.78 3.81 1.05 8.28-.27 10.51-3.58 3.17-3.72 2.66-9.7-.78-13.13-3.25-3.12-8.14-3.44-12.18-5.08-17.89-5.85-44.19-12.09-63.67-16.56l26.16 3.28c23.02 3.13 46.28 3.92 69.34 6.75 10.8.96 25.43 1.81 34.34-4.39 2.26-1.54 4.86-2.75 6.21-5.27 2.76-4.59 1.13-11.06-3.59-13.68ZM925.4 23.77c37.64 1.4 153.99 10.85 196.64 14.94 45.95 5.51 91.89 11.03 137.76 17.19 24.25 4.77 74.13 11.21 101.72 18.14-11.87-1.15-23.77-1.97-35.65-3.06-133.46-15.9-266.8-33.02-400.47-47.21Z"/>
-      </svg>
-    </h1>
-    <p class="lede">Ställ frågor på svenska eller engelska. Jag svarar med endpoints, fältnamn, exempel-anrop och affärscase — anpassat efter om du är utvecklare, säljare eller beslutsfattare.</p>
-    <div class="examples">
-      <button class="example" data-q="Vilka endpoints finns för Sverige?"><strong>📋 Översikt</strong>Vilka endpoints finns för Sverige?</button>
-      <button class="example" data-q="Hur slår jag upp en bil med regnummer ABC123 — visa exempel-anrop i curl och Python."><strong>🚗 Regnr-uppslag</strong>Exempel i curl + Python</button>
-      <button class="example" data-q="Vi är ett försäkringsbolag som vill bedöma risk vid en ny offert. Vilka datapunkter rekommenderar du och från vilka endpoints?"><strong>🏢 För försäkring</strong>Vilka datapunkter behöver vi för riskbedömning?</button>
-      <button class="example" data-q="Vilka däck- och fälg-fält finns i fordonsdatan, och hur använder jag TecDoc-ID för reservdelar?"><strong>🛞 Däck & TecDoc</strong>Hjul-data + TecDoc-ID i vårt API</button>
-      <button class="example" data-q="Vad innehåller history-endpointen och vilka HistoryTypes finns?"><strong>📜 Historik</strong>/vehicle/history och vilka typer finns?</button>
-      <button class="example" data-q="What's the rate limit policy and how do I handle 429 responses?"><strong>⚙️ Rate limits</strong>How do I handle 429 responses?</button>
-    </div>
-  </div>
   <div id="chat" class="chat"></div>
 </main>
 
 <footer>
   <form class="composer" id="composer">
-    <textarea id="input" rows="1" placeholder="Ställ en fråga om Biluppgifters API…"></textarea>
+    <textarea id="input" rows="1" placeholder="Skriv ditt svar…" autofocus></textarea>
     <button type="submit" class="send-btn" id="sendBtn" disabled>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
     </button>
   </form>
-  <div class="footer-attribution">
-    Svaren är AI-genererade och kan innehålla fel — verifiera viktig info mot <a href="https://data.biluppgifter.se" target="_blank">den officiella API-speccen</a>. Drivs av Claude (Anthropic).
+  <div class="footer-note">
+    Svaren är AI-genererade och kan innehålla fel — verifiera viktig info mot <a href="https://data.biluppgifter.se" target="_blank">den officiella API-speccen</a> eller bekräfta med vårt team. Vi behandlar dina uppgifter enligt vår <a href="https://www.biluppgifter.se" target="_blank">integritetspolicy</a>. Kontakt: sales@biluppgifter.se
   </div>
 </footer>
 
-<div class="gate-overlay" id="gateOverlay" style="display:none">
-  <div class="gate-card" id="gateCardForm">
-    <div class="gate-logo">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="m73.474 0c-7.4644 0-13.474 6.0093-13.474 13.474v485.05c0 7.4644 6.0093 13.474 13.474 13.474h188.69c81.55 0 155.51-49.421 186.72-124.76 31.208-75.343 13.852-162.59-43.813-220.25l-57.163-57.163c-5.2781-5.2781-13.777-5.2781-19.055 0l-76.218 76.218c-5.2781 5.2781-5.2781 13.777 0 19.055l57.166 57.163c19.404 19.404 25.104 48.063 14.603 73.416-10.501 25.353-34.795 41.589-62.237 41.589 0 0-47.283-0.0164-53.955 0s-13.387-6.5755-13.474-13.474c-0.0866-6.8982 0-350.32 0-350.32 0-7.4644-6.0093-13.474-13.474-13.474z"/></svg>
-    </div>
-    <h2>Välkommen till Biluppgifter API-assistenten</h2>
-    <p>Ange ditt namn och din arbets-email. Vi skickar en inloggningslänk dit — klicka på länken så är du inne.</p>
-    <form id="gateForm" autocomplete="off">
-      <input type="text" id="gateName" placeholder="För- och efternamn" required autofocus />
-      <input type="email" id="gateEmail" placeholder="din@arbetsmail.se" required />
-      <input type="text" id="gateCompany" placeholder="Företag" required />
-      <input type="text" id="gateOrgNr" placeholder="Organisationsnummer (NNNNNN-NNNN)" required />
-      <div class="err-msg" id="gateError"></div>
-      <button type="submit" class="submit" id="gateSubmit">Skicka inloggningslänk →</button>
-    </form>
-    <div class="privacy">Vi använder din email enbart för inloggning och uppföljning. Vi delar inte den med tredje part.</div>
-  </div>
-  <div class="gate-card" id="gateCardSent" style="display:none">
-    <div class="gate-logo">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="m73.474 0c-7.4644 0-13.474 6.0093-13.474 13.474v485.05c0 7.4644 6.0093 13.474 13.474 13.474h188.69c81.55 0 155.51-49.421 186.72-124.76 31.208-75.343 13.852-162.59-43.813-220.25l-57.163-57.163c-5.2781-5.2781-13.777-5.2781-19.055 0l-76.218 76.218c-5.2781 5.2781-5.2781 13.777 0 19.055l57.166 57.163c19.404 19.404 25.104 48.063 14.603 73.416-10.501 25.353-34.795 41.589-62.237 41.589 0 0-47.283-0.0164-53.955 0s-13.387-6.5755-13.474-13.474c-0.0866-6.8982 0-350.32 0-350.32 0-7.4644-6.0093-13.474-13.474-13.474z"/></svg>
-    </div>
-    <h2>Kolla din inkorg 📬</h2>
-    <p>Vi har skickat en inloggningslänk till <strong id="sentToEmail">din email</strong>. Klicka på länken i mailet så loggas du in automatiskt.</p>
-    <p style="font-size:13px;color:var(--muted);margin-top:14px">Länken är giltig i 15 minuter. Om mailet inte syns, kolla skräpposten.</p>
-    <button type="button" class="submit" id="gateResendBtn" style="background:transparent;color:var(--accent);border:1px solid var(--accent);margin-top:8px">Skicka ny länk</button>
-  </div>
-</div>
-
-<dialog id="settingsDialog">
-  <div class="dialog-header">
-    <h2>Email</h2>
-    <button class="btn ghost" id="closeSettingsBtn" style="padding:6px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-  </div>
-  <div class="dialog-body">
-    <div class="field">
-      <label for="changeName">Ditt namn</label>
-      <input type="text" id="changeName" placeholder="För- och efternamn" />
-    </div>
-    <div class="field">
-      <label for="changeEmail">Din arbets-email</label>
-      <input type="email" id="changeEmail" placeholder="din@arbetsmail.se" />
-      <div class="hint">Uppgifterna följer med varje fråga och loggas på servern. Vill du börja om med en annan adress: ändra här eller klicka "Logga ut" för att rensa lokala data.</div>
-    </div>
-  </div>
-  <div class="dialog-footer">
-    <button class="btn ghost" id="logoutBtn">Logga ut</button>
-    <button class="btn ghost" id="cancelSettingsBtn">Avbryt</button>
-    <button class="btn primary" id="saveSettingsBtn">Spara</button>
-  </div>
-</dialog>
-
 <script>
-/* Kunskapsbasen (system prompt + API-spec) ligger i /api/chat.js på servern. */
-
-/* ========= TILLSTÅND ========= */
-
 const state = {
-  userEmail: localStorage.getItem('bil_user_email') || '',
-  userName: localStorage.getItem('bil_user_name') || '',
-  userCompany: localStorage.getItem('bil_user_company') || '',
-  userOrgNr: localStorage.getItem('bil_user_org_nr') || '',
   messages: [],
+  leadSent: false,
 };
-
-/* ========= DOM-REFERENSER ========= */
 
 const $ = (id) => document.getElementById(id);
 const chatEl = $('chat');
-const welcomeEl = $('welcome');
 const inputEl = $('input');
 const composerEl = $('composer');
 const sendBtn = $('sendBtn');
-const emailPill = $('emailPill');
-const emailPillText = $('emailPillText');
-const settingsDialog = $('settingsDialog');
-const changeNameEl = $('changeName');
-const changeEmailEl = $('changeEmail');
-const saveSettingsBtn = $('saveSettingsBtn');
-const cancelSettingsBtn = $('cancelSettingsBtn');
-const closeSettingsBtn = $('closeSettingsBtn');
-const logoutBtn = $('logoutBtn');
-const resetBtn = $('resetBtn');
 const mainEl = $('main');
-const gateOverlay = $('gateOverlay');
-const gateCardForm = $('gateCardForm');
-const gateCardSent = $('gateCardSent');
-const gateForm = $('gateForm');
-const gateName = $('gateName');
-const gateEmail = $('gateEmail');
-const gateCompany = $('gateCompany');
-const gateOrgNr = $('gateOrgNr');
-const gateError = $('gateError');
-const gateSubmit = $('gateSubmit');
-const gateResendBtn = $('gateResendBtn');
-const sentToEmail = $('sentToEmail');
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-/* ========= EMAIL GATE ========= */
-
-function showGate() {
-  gateOverlay.style.display = 'flex';
-  gateCardForm.style.display = '';
-  gateCardSent.style.display = 'none';
-  setTimeout(() => gateName.focus(), 50);
-}
-function showSentScreen(email) {
-  gateOverlay.style.display = 'flex';
-  gateCardForm.style.display = 'none';
-  gateCardSent.style.display = '';
-  sentToEmail.textContent = email;
-}
-function hideGate() { gateOverlay.style.display = 'none'; }
-function updateEmailPill() {
-  const label = state.userName ? state.userName : (state.userEmail || '—');
-  emailPillText.textContent = label;
-  emailPill.style.display = state.userEmail ? 'inline-flex' : 'none';
-}
-
-// Apps Script Web App som tar emot lead-data och skriver rad i Google Sheet.
-const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwBvJtuuFHRIGNDT3CcjeqIrgaDmYEfOPMifPWlzVRQToFFIAno6SQtpR5Fdo-ZzBzv/exec';
-
-// Logga frågor från inloggade användare till Google Sheet (kolumn L på deras rad).
-// Fire-and-forget — blockerar inte chattsvaret.
-function logQuestion(email, question) {
-  if (!email || !question) return;
-  try {
-    fetch(SHEET_WEBHOOK_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({
-        action: 'log_question',
-        email,
-        question: String(question).slice(0, 2000),
-      }),
-    }).catch((e) => console.warn('logQuestion failed:', e));
-  } catch (e) {
-    console.warn('logQuestion threw:', e);
-  }
-}
-
-async function requestMagicLink(name, email, company, orgNr) {
-  try {
-    await fetch(SHEET_WEBHOOK_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({
-        action: 'request_magic_link',
-        name,
-        email,
-        company,
-        org_nr: orgNr,
-        user_agent: navigator.userAgent || '',
-        referrer: document.referrer || '',
-        timestamp_iso: new Date().toISOString(),
-        source: 'biluppgifter-api-assistant',
-      }),
-    });
-  } catch (e) {
-    console.warn('magic link request failed:', e);
-  }
-}
-
-function submitGateForm() {
-  const nameValue = gateName.value.trim();
-  const emailValue = gateEmail.value.trim();
-  const companyValue = gateCompany.value.trim();
-  const orgNrValue = gateOrgNr.value.trim();
-  if (nameValue.length < 2) {
-    gateError.textContent = 'Ange ditt namn (minst 2 tecken).';
-    gateName.classList.add('error');
-    return;
-  }
-  if (!EMAIL_RE.test(emailValue)) {
-    gateError.textContent = 'Ange en giltig email-adress.';
-    gateEmail.classList.add('error');
-    return;
-  }
-  if (companyValue.length < 2) {
-    gateError.textContent = 'Ange företagsnamn.';
-    gateCompany.classList.add('error');
-    return;
-  }
-  if (orgNrValue.length < 6) {
-    gateError.textContent = 'Ange ett giltigt organisationsnummer (t.ex. 556677-1122).';
-    gateOrgNr.classList.add('error');
-    return;
-  }
-  state.userName = nameValue;
-  state.userEmail = emailValue;
-  state.userCompany = companyValue;
-  state.userOrgNr = orgNrValue;
-  localStorage.setItem('bil_user_name', nameValue);
-  localStorage.setItem('bil_user_email', emailValue);
-  localStorage.setItem('bil_user_company', companyValue);
-  localStorage.setItem('bil_user_org_nr', orgNrValue);
-  gateSubmit.disabled = true;
-  gateSubmit.textContent = 'Skickar…';
-  requestMagicLink(nameValue, emailValue, companyValue, orgNrValue);
-  setTimeout(() => {
-    showSentScreen(emailValue);
-    gateSubmit.disabled = false;
-    gateSubmit.textContent = 'Skicka inloggningslänk →';
-  }, 400);
-}
-
-gateForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  submitGateForm();
-});
-
-gateResendBtn.addEventListener('click', () => {
-  showGate();
-});
-
-[gateName, gateEmail, gateCompany, gateOrgNr].forEach(input => {
-  input.addEventListener('input', () => {
-    gateError.textContent = '';
-    input.classList.remove('error');
-  });
-});
-
-// Parsa magic link callback från URL-hash (#auth=base64) — legacy
-function parseAuthHash() {
-  if (!location.hash || !location.hash.startsWith('#auth=')) return null;
-  try {
-    const encoded = decodeURIComponent(location.hash.substring(6));
-    const json = JSON.parse(atob(encoded));
-    if (!json.email || !json.name) return null;
-    return { email: json.email, name: json.name, ts: json.ts || Date.now() };
-  } catch (e) {
-    console.warn('Failed to parse auth hash', e);
-    return null;
-  }
-}
-
-function clearAuthHash() {
-  history.replaceState(null, '', location.pathname + location.search);
-}
-
-function parseTokenQuery() {
-  const params = new URLSearchParams(location.search);
-  return params.get('token');
-}
-
-function clearTokenQuery() {
-  history.replaceState(null, '', location.pathname);
-}
-
-async function verifyTokenViaApi(token) {
-  try {
-    const res = await fetch('/api/verify-magic-link', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token }),
-    });
-    const data = await res.json();
-    return data;
-  } catch (err) {
-    console.error('verify-magic-link request failed:', err);
-    return { ok: false, error: 'Network error' };
-  }
-}
-
-function showVerifyingScreen() {
-  gateOverlay.style.display = 'flex';
-  gateCardForm.style.display = 'none';
-  gateCardSent.style.display = 'none';
-  let verifyCard = document.getElementById('gateCardVerifying');
-  if (!verifyCard) {
-    verifyCard = document.createElement('div');
-    verifyCard.id = 'gateCardVerifying';
-    verifyCard.className = 'gate-card';
-    verifyCard.innerHTML =
-      '<div class="gate-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="m73.474 0c-7.4644 0-13.474 6.0093-13.474 13.474v485.05c0 7.4644 6.0093 13.474 13.474 13.474h188.69c81.55 0 155.51-49.421 186.72-124.76 31.208-75.343 13.852-162.59-43.813-220.25l-57.163-57.163c-5.2781-5.2781-13.777-5.2781-19.055 0l-76.218 76.218c-5.2781 5.2781-5.2781 13.777 0 19.055l57.166 57.163c19.404 19.404 25.104 48.063 14.603 73.416-10.501 25.353-34.795 41.589-62.237 41.589 0 0-47.283-0.0164-53.955 0s-13.387-6.5755-13.474-13.474c-0.0866-6.8982 0-350.32 0-350.32 0-7.4644-6.0093-13.474-13.474-13.474z"/></svg></div>' +
-      '<h2>Loggar in dig…</h2>' +
-      '<p>Verifierar din inloggningslänk.</p>';
-    gateOverlay.appendChild(verifyCard);
-  }
-  verifyCard.style.display = '';
-}
-
-function showVerifyError(errorMsg) {
-  gateOverlay.style.display = 'flex';
-  gateCardForm.style.display = 'none';
-  gateCardSent.style.display = 'none';
-  const verifyCard = document.getElementById('gateCardVerifying');
-  if (verifyCard) verifyCard.style.display = 'none';
-  let errCard = document.getElementById('gateCardError');
-  if (!errCard) {
-    errCard = document.createElement('div');
-    errCard.id = 'gateCardError';
-    errCard.className = 'gate-card';
-    gateOverlay.appendChild(errCard);
-  }
-  errCard.innerHTML =
-    '<div class="gate-logo" style="background:#fee2e2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#dc2626" style="width:30px;height:30px"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div>' +
-    '<h2 style="color:var(--danger)">Inloggning misslyckades</h2>' +
-    '<p>' + errorMsg + '</p>' +
-    '<button type="button" class="submit" id="errBackBtn" style="background:var(--accent);color:white;border:none;padding:13px 20px;border-radius:999px;font-weight:600;cursor:pointer;font-family:inherit;font-size:14.5px;margin-top:8px;width:100%">Begär ny länk</button>';
-  errCard.style.display = '';
-  document.getElementById('errBackBtn').addEventListener('click', () => {
-    if (errCard) errCard.style.display = 'none';
-    showGate();
-  });
-}
-
-const SESSION_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 dagar
-
-function hasValidSession() {
-  // Kräver nu en HMAC-signerad session-token (mintad av Apps Script).
-  // Servern verifierar signaturen vid varje chat-anrop — bypassed-localStorage
-  // utan giltig token ger 401 från /api/chat.
-  if (!state.userEmail) return false;
-  if (!localStorage.getItem('bil_session_token')) return false;
-  const sessionTs = parseInt(localStorage.getItem('bil_session_ts') || '0', 10);
-  if (!sessionTs) return false;
-  return (Date.now() - sessionTs) < SESSION_TTL_MS;
-}
-
-// Boot
-async function boot() {
-  const token = parseTokenQuery();
-  if (token) {
-    showVerifyingScreen();
-    const result = await verifyTokenViaApi(token);
-    clearTokenQuery();
-    if (result.ok && result.email && result.name && result.session_token) {
-      state.userEmail = result.email;
-      state.userName = result.name;
-      localStorage.setItem('bil_user_email', result.email);
-      localStorage.setItem('bil_user_name', result.name);
-      localStorage.setItem('bil_session_token', result.session_token);
-      localStorage.setItem('bil_session_ts', String(Date.now()));
-      updateEmailPill();
-      hideGate();
-    } else {
-      const msg = result.error === 'token expired' ? 'Länken har gått ut. Begär en ny.' :
-                  result.error === 'token already used' ? 'Länken har redan använts. Begär en ny om du behöver logga in igen.' :
-                  result.error === 'token not found' ? 'Länken är ogiltig. Begär en ny.' :
-                  'Något gick fel: ' + (result.error || 'okänt fel') + '. Begär en ny länk.';
-      showVerifyError(msg);
-    }
-    return;
-  }
-  // (Legacy #auth=base64-hash är borttagen — den var osignerad och tillät
-  //  spoofing via DevTools. Allt går nu via ?token=xxx → verifyTokenViaApi
-  //  som returnerar en HMAC-signerad session-token.)
-  if (location.hash && location.hash.startsWith('#auth=')) {
-    // Säker rensning: ta bort hashen utan att ge access
-    clearAuthHash();
-  }
-  if (hasValidSession()) {
-    updateEmailPill();
-    hideGate();
-  } else {
-    showGate();
-  }
-}
-boot();
-
-/* ========= INITIERING ========= */
+const BOT_AVATAR_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="m73.474 0c-7.4644 0-13.474 6.0093-13.474 13.474v485.05c0 7.4644 6.0093 13.474 13.474 13.474h188.69c81.55 0 155.51-49.421 186.72-124.76 31.208-75.343 13.852-162.59-43.813-220.25l-57.163-57.163c-5.2781-5.2781-13.777-5.2781-19.055 0l-76.218 76.218c-5.2781 5.2781-5.2781 13.777 0 19.055l57.166 57.163c19.404 19.404 25.104 48.063 14.603 73.416-10.501 25.353-34.795 41.589-62.237 41.589 0 0-47.283-0.0164-53.955 0s-13.387-6.5755-13.474-13.474c-0.0866-6.8982 0-350.32 0-350.32 0-7.4644-6.0093-13.474-13.474-13.474z"/></svg>';
 
 function autoresize(el) {
   el.style.height = 'auto';
@@ -1035,67 +379,6 @@ inputEl.addEventListener('keydown', (e) => {
   }
 });
 
-document.querySelectorAll('.example').forEach(btn => {
-  btn.addEventListener('click', () => {
-    inputEl.value = btn.dataset.q;
-    autoresize(inputEl);
-    sendBtn.disabled = false;
-    inputEl.focus();
-  });
-});
-
-emailPill.addEventListener('click', () => {
-  changeNameEl.value = state.userName || '';
-  changeEmailEl.value = state.userEmail || '';
-  settingsDialog.showModal();
-});
-closeSettingsBtn.addEventListener('click', () => settingsDialog.close());
-cancelSettingsBtn.addEventListener('click', () => settingsDialog.close());
-saveSettingsBtn.addEventListener('click', () => {
-  const nameValue = changeNameEl.value.trim();
-  const emailValue = changeEmailEl.value.trim();
-  if (nameValue.length < 2) {
-    alert('Ange ditt namn (minst 2 tecken).');
-    return;
-  }
-  if (!EMAIL_RE.test(emailValue)) {
-    alert('Ange en giltig email-adress.');
-    return;
-  }
-  state.userName = nameValue;
-  state.userEmail = emailValue;
-  localStorage.setItem('bil_user_name', nameValue);
-  localStorage.setItem('bil_user_email', emailValue);
-  updateEmailPill();
-  settingsDialog.close();
-});
-logoutBtn.addEventListener('click', () => {
-  if (!confirm('Logga ut och rensa lokala data?')) return;
-  state.userEmail = '';
-  state.userName = '';
-  state.userCompany = '';
-  state.userOrgNr = '';
-  state.messages = [];
-  localStorage.removeItem('bil_user_email');
-  localStorage.removeItem('bil_user_name');
-  localStorage.removeItem('bil_user_company');
-  localStorage.removeItem('bil_user_org_nr');
-  localStorage.removeItem('bil_session_token');
-  localStorage.removeItem('bil_session_ts');
-  chatEl.innerHTML = '';
-  welcomeEl.style.display = '';
-  updateEmailPill();
-  settingsDialog.close();
-  showGate();
-});
-
-resetBtn.addEventListener('click', () => {
-  if (!confirm('Rensa hela konversationen?')) return;
-  state.messages = [];
-  chatEl.innerHTML = '';
-  welcomeEl.style.display = '';
-});
-
 composerEl.addEventListener('submit', async (e) => {
   e.preventDefault();
   const text = inputEl.value.trim();
@@ -1103,63 +386,32 @@ composerEl.addEventListener('submit', async (e) => {
   inputEl.value = '';
   autoresize(inputEl);
   sendBtn.disabled = true;
-  welcomeEl.style.display = 'none';
   await sendMessage(text);
+  inputEl.focus();
 });
 
-/* ========= CHAT ========= */
-
+/* === Markdown (simple, safe) === */
 function renderMarkdown(text) {
   let html = text
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;');
   html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (m, lang, code) =>
-    '<pre><code class="lang-' + lang + '">' + code + '</code></pre>'
+    '<pre><code>' + code + '</code></pre>'
   );
   html = html.replace(/`([^`\n]+)`/g, '<code>$1</code>');
-  html = html.replace(/^#### (.*)$/gm, '<h4>$1</h4>');
-  html = html.replace(/^### (.*)$/gm, '<h3>$1</h3>');
-  html = html.replace(/^## (.*)$/gm, '<h2>$1</h2>');
-  html = html.replace(/^# (.*)$/gm, '<h1>$1</h1>');
   html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-  html = html.replace(/(?<![*])\*([^*\n]+)\*(?![*])/g, '<em>$1</em>');
   html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-  html = html.replace(/((?:^\|.*\|\s*\n)+)/gm, (block) => {
-    const lines = block.trim().split('\n');
-    if (lines.length < 2) return block;
-    const headerCells = lines[0].split('|').slice(1, -1).map(s => s.trim());
-    const isSep = /^\|[\s\-:|]+\|$/.test(lines[1]);
-    if (!isSep) return block;
-    const rows = lines.slice(2).map(l => l.split('|').slice(1, -1).map(s => s.trim()));
-    let out = '<table><thead><tr>';
-    headerCells.forEach(h => out += '<th>' + h + '</th>');
-    out += '</tr></thead><tbody>';
-    rows.forEach(r => {
-      out += '<tr>';
-      r.forEach(c => out += '<td>' + c + '</td>');
-      out += '</tr>';
-    });
-    out += '</tbody></table>';
-    return out;
-  });
   html = html.replace(/((?:^[-*] .+(?:\n|$))+)/gm, (block) => {
     const items = block.trim().split('\n').map(l => l.replace(/^[-*] /, ''));
     return '<ul>' + items.map(i => '<li>' + i + '</li>').join('') + '</ul>';
   });
-  html = html.replace(/((?:^\d+\. .+(?:\n|$))+)/gm, (block) => {
-    const items = block.trim().split('\n').map(l => l.replace(/^\d+\. /, ''));
-    return '<ol>' + items.map(i => '<li>' + i + '</li>').join('') + '</ol>';
-  });
-  html = html.replace(/^&gt; (.*)$/gm, '<blockquote>$1</blockquote>');
   html = html.split(/\n\n+/).map(part => {
-    if (/^\s*<(h\d|ul|ol|pre|table|blockquote)/i.test(part.trim())) return part;
+    if (/^\s*<(h\d|ul|ol|pre|table)/i.test(part.trim())) return part;
     return '<p>' + part.replace(/\n/g, '<br>') + '</p>';
   }).join('\n');
   return html;
 }
-
-const BOT_AVATAR_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" style="width:20px;height:20px;fill:#fff"><path d="m73.474 0c-7.4644 0-13.474 6.0093-13.474 13.474v485.05c0 7.4644 6.0093 13.474 13.474 13.474h188.69c81.55 0 155.51-49.421 186.72-124.76 31.208-75.343 13.852-162.59-43.813-220.25l-57.163-57.163c-5.2781-5.2781-13.777-5.2781-19.055 0l-76.218 76.218c-5.2781 5.2781-5.2781 13.777 0 19.055l57.166 57.163c19.404 19.404 25.104 48.063 14.603 73.416-10.501 25.353-34.795 41.589-62.237 41.589 0 0-47.283-0.0164-53.955 0s-13.387-6.5755-13.474-13.474c-0.0866-6.8982 0-350.32 0-350.32 0-7.4644-6.0093-13.474-13.474-13.474z"/></svg>';
 
 function addMessage(role, content) {
   const el = document.createElement('div');
@@ -1182,46 +434,86 @@ function addLoadingMessage() {
   return el;
 }
 
-async function sendMessage(text) {
-  addMessage('user', text);
+function addLeadCard(success, email) {
+  const el = document.createElement('div');
+  el.className = 'lead-card' + (success ? '' : ' error');
+  if (success) {
+    el.innerHTML =
+      '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' +
+      '<div><strong>Skickat!</strong>Vi har fått dina uppgifter. Du får ditt test-token på <strong>' + (email || 'din email') + '</strong> vardagar inom 24 timmar.</div>';
+  } else {
+    el.innerHTML =
+      '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' +
+      '<div><strong>Något gick fel</strong>Vi kunde inte skicka dina uppgifter automatiskt. Maila istället <strong>sales@biluppgifter.se</strong> med din kontakt så hör vi av oss.</div>';
+  }
+  chatEl.appendChild(el);
+  mainEl.scrollTop = mainEl.scrollHeight;
+}
+
+/* === Lead-marker parsing === */
+const LEAD_START = '[LEAD_READY]';
+const LEAD_END = '[/LEAD_READY]';
+
+function extractLead(text) {
+  const start = text.indexOf(LEAD_START);
+  if (start === -1) return { display: text, lead: null };
+  const end = text.indexOf(LEAD_END, start);
+  if (end === -1) {
+    return { display: text.slice(0, start).trimEnd(), lead: null, pending: true };
+  }
+  const jsonStr = text.slice(start + LEAD_START.length, end).trim();
+  let parsed = null;
+  try { parsed = JSON.parse(jsonStr); } catch {}
+  const display = (text.slice(0, start) + text.slice(end + LEAD_END.length)).trim();
+  return { display, lead: parsed };
+}
+
+async function sendLead(lead, showCard) {
+  try {
+    const res = await fetch('/api/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(lead),
+    });
+    if (!res.ok) throw new Error('lead endpoint ' + res.status);
+    if (showCard) {
+      addLeadCard(true, lead.email);
+      state.leadSent = true;
+    }
+  } catch (err) {
+    console.error('lead send failed', err);
+    if (showCard) addLeadCard(false, lead.email);
+  }
+}
+
+/* === Chat call === */
+async function sendMessage(text, options = {}) {
+  if (!options.hideUser) addMessage('user', text);
   state.messages.push({ role: 'user', content: text });
-  // Logga frågan till Google Sheet (fire-and-forget — blockerar inte streaming)
-  logQuestion(state.userEmail, text);
+
   const loading = addLoadingMessage();
   let bubble = null;
   let fullText = '';
+
   try {
     const response = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        session_token: localStorage.getItem('bil_session_token') || '',
-        messages: state.messages,
-      }),
+      body: JSON.stringify({ messages: state.messages }),
     });
+
     if (!response.ok) {
       const errorText = await response.text();
-      // Om servern säger att sessionen är ogiltig — rensa lokalt och be om ny login
-      if (response.status === 401) {
-        try {
-          const parsed = JSON.parse(errorText);
-          if (parsed.code === 'invalid_session') {
-            localStorage.removeItem('bil_session_token');
-            localStorage.removeItem('bil_session_ts');
-            if (loading.parentNode) loading.remove();
-            addMessage('bot', '⚠️ **Din session har gått ut eller ogiltigförklarats.** Begär en ny inloggningslänk.');
-            showGate();
-            return;
-          }
-        } catch {}
-      }
-      throw new Error('API-fel ' + response.status + ': ' + errorText);
+      throw new Error('Chat error ' + response.status + ': ' + errorText);
     }
+
     loading.remove();
     bubble = addMessage('bot', '');
+
     const reader = response.body.getReader();
     const decoder = new TextDecoder();
     let buffer = '';
+
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
@@ -1236,17 +528,27 @@ async function sendMessage(text) {
           const obj = JSON.parse(data);
           if (obj.type === 'content_block_delta' && obj.delta?.type === 'text_delta') {
             fullText += obj.delta.text;
-            bubble.innerHTML = renderMarkdown(fullText);
+            const { display } = extractLead(fullText);
+            bubble.innerHTML = renderMarkdown(display);
             mainEl.scrollTop = mainEl.scrollHeight;
           }
         } catch (e) {}
       }
     }
+
     state.messages.push({ role: 'assistant', content: fullText });
+
+    // Botten kan emitta [LEAD_READY] flera gånger (tidigt + slutligt med fyllig use_case).
+    // Apps Script gör upsert per email — vi skickar varje emit men visar bara
+    // lead-card vid första lyckade sendningen.
+    const { lead } = extractLead(fullText);
+    if (lead && lead.email) {
+      await sendLead(lead, !state.leadSent);
+    }
   } catch (err) {
     if (loading.parentNode) loading.remove();
-    const errMsg = '⚠️ **Fel:** ' + (err.message || err) +
-      '\n\nKontrollera att webbappen är deployad till Vercel med `ANTHROPIC_API_KEY` satt som env-variabel, och försök igen.';
+    const errMsg = '⚠️ **Något strulade.** ' + (err.message || err) +
+      '\n\nOm det fortsätter — maila sales@biluppgifter.se direkt.';
     if (bubble) {
       bubble.innerHTML = renderMarkdown(errMsg);
     } else {
@@ -1254,6 +556,12 @@ async function sendMessage(text) {
     }
   }
 }
+
+/* === Boot — kicka igång konversationen så botten öppnar med sin discovery-fråga === */
+async function start() {
+  await sendMessage('Hej', { hideUser: true });
+}
+start();
 </script>
 </body>
 </html>
