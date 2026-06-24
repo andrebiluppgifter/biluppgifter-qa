@@ -343,7 +343,7 @@
     </button>
   </form>
   <div class="footer-note">
-    Vi behandlar dina uppgifter enligt vår <a href="https://www.biluppgifter.se" target="_blank">integritetspolicy</a>. Kontakt: sales@biluppgifter.se
+    Svaren är AI-genererade och kan innehålla fel — verifiera viktig info mot <a href="https://data.biluppgifter.se" target="_blank">den officiella API-speccen</a> eller bekräfta med vårt team. Vi behandlar dina uppgifter enligt vår <a href="https://www.biluppgifter.se" target="_blank">integritetspolicy</a>. Kontakt: sales@biluppgifter.se
   </div>
 </footer>
 
@@ -440,7 +440,7 @@ function addLeadCard(success, email) {
   if (success) {
     el.innerHTML =
       '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>' +
-      '<div><strong>Skickat!</strong>Vi har fått dina uppgifter. Du får ditt test-token på <strong>' + (email || 'din email') + '</strong> inom 24h.</div>';
+      '<div><strong>Skickat!</strong>Vi har fått dina uppgifter. Du får ditt test-token på <strong>' + (email || 'din email') + '</strong> vardagar inom 24 timmar.</div>';
   } else {
     el.innerHTML =
       '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>' +
