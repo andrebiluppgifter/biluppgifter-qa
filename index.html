@@ -468,7 +468,7 @@ function extractLead(text) {
   return { display, lead: parsed };
 }
 
-async function sendLead(lead) {
+async function sendLead(lead, showCard) {
   try {
     const res = await fetch('/api/lead', {
       method: 'POST',
@@ -476,11 +476,13 @@ async function sendLead(lead) {
       body: JSON.stringify(lead),
     });
     if (!res.ok) throw new Error('lead endpoint ' + res.status);
-    addLeadCard(true, lead.email);
-    state.leadSent = true;
+    if (showCard) {
+      addLeadCard(true, lead.email);
+      state.leadSent = true;
+    }
   } catch (err) {
     console.error('lead send failed', err);
-    addLeadCard(false, lead.email);
+    if (showCard) addLeadCard(false, lead.email);
   }
 }
 
@@ -536,9 +538,12 @@ async function sendMessage(text, options = {}) {
 
     state.messages.push({ role: 'assistant', content: fullText });
 
+    // Botten kan emitta [LEAD_READY] flera gånger (tidigt + slutligt med fyllig use_case).
+    // Apps Script gör upsert per email — vi skickar varje emit men visar bara
+    // lead-card vid första lyckade sendningen.
     const { lead } = extractLead(fullText);
-    if (lead && !state.leadSent && lead.email) {
-      await sendLead(lead);
+    if (lead && lead.email) {
+      await sendLead(lead, !state.leadSent);
     }
   } catch (err) {
     if (loading.parentNode) loading.remove();
