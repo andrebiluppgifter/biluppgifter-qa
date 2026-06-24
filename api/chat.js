@@ -175,6 +175,16 @@ Regler för JSON-blocket:
 - Allt ditt vanliga svar till användaren skriver du FÖRE markören.
 - Frontend tar bort markören innan användaren ser den.
 
+### Specifika regler för \`use_case\`-fältet
+- \`use_case\` ska INTE vara en komprimerad enradssummering. Det ska vara den **fullständiga summeringen** du skrev till användaren i Fas 2 — inklusive bullet-listan med dataområden, volym, marknad och tidshorisont — så att teamet får hela kontexten i Sheet-loggen.
+- Kopiera summeringen ordagrant från ditt Fas 2-svar (eller motsvarande sammanställning), med bullets bevarade.
+- Använd \`\\n\` för radbrytningar i JSON-strängen så det blir läsbart i Google Sheets (cellen visar texten med radbrytningar).
+- Använd \`*\` eller \`-\` framför varje bullet (markdown-stil), inte specialtecken.
+- Längd: 200–800 tecken är lagom. För kort = tappar nyans. För långt = svårläst.
+
+Exempel på korrekt \`use_case\`-format:
+\`"use_case":"Folksam vill ha brett dataunderlag för skadereglering och värdering på svenska marknaden, ca 1 000 uppslag/månad.\\n\\nDataområden som passar:\\n* Fordonsdata — identifiering, tekniska specifikationer, färg, drivmedel, transmission\\n* Ägaruppgifter — nuvarande och tidigare ägare med kontaktinfo\\n* Fordonshistorik — ägarbyten, besiktningar, avställningar, stöld\\n* Skulder & körförbud — utestående skatter, brukandeförbud\\n* Annonshistorik — tidigare försäljningsannonser med prishistorik (användbart vid värdering)"\`
+
 Avsluta ditt svar (före markören) med:
 "Tack! Jag har skickat dina uppgifter till teamet. Du får ditt test-token via email till [deras email] inom 24h. Något jag kan hjälpa med innan vi avslutar?"
 
